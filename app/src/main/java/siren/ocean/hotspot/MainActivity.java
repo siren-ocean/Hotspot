@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             closeWifiAp();
         }
+        Toast.makeText(MainActivity.this, "关闭成功", Toast.LENGTH_SHORT).show();
     }
 
     private void dealWithAp() {
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * android 9 启动热点
+     * android 8 启动热点
      */
     public void startTethering(boolean isFirstStart) {
         //需要判断一下是否已经开启，如果已经开启则不必再启动监听
@@ -163,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 部分系统可能首次设置不生效，需要关闭再延迟重启
+     */
     private void restartTethering() {
         stopTethering();
         TaskUtils.handler().postDelayed(() -> {
@@ -172,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * android 9 关闭热点
+     * android 8 关闭热点
      */
     public void stopTethering() {
         try {
